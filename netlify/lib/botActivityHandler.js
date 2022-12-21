@@ -59,7 +59,9 @@ class BotActivityHandler extends TeamsActivityHandler {
         profile,
       });
 
-      await context.sendActivity(`Profile has been updated.`);
+      await context.sendActivity(
+        `Profile has been updated. Channel ID: ${profile.ms_teams.channel_id}. Tenant ID: ${profile.ms_teams.tenant_id}. Service URL: ${profile.ms_teams.service_url}.`
+      );
     } catch (err) {
       console.log(err);
       await context.sendActivity(`An error occurred updating your profile.`);
