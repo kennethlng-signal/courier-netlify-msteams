@@ -24,14 +24,14 @@ class BotActivityHandler extends TeamsActivityHandler {
     const {
       serviceUrl: service_url,
       channelData: {
-        tenant: { id: tenant_id }
-      }
+        tenant: { id: tenant_id },
+      },
     } = context.activity;
     let profile = {
       ms_teams: {
         tenant_id,
-        service_url
-      }
+        service_url,
+      },
     };
     const text = context.activity.text.trim();
     const [cmd, recipientId] = text.split(" ");
@@ -56,10 +56,10 @@ class BotActivityHandler extends TeamsActivityHandler {
     try {
       await courier.mergeProfile({
         recipientId,
-        profile
+        profile,
       });
 
-      await context.sendActivity(`Your profile has been updated.`);
+      await context.sendActivity(`Profile has been updated.`);
     } catch (err) {
       console.log(err);
       await context.sendActivity(`An error occurred updating your profile.`);
